@@ -1,0 +1,24 @@
+---
+- name: Create shared directory on web01
+  file:
+    path: /home/vagrant/Общедоступные
+    state: directory
+    owner: vagrant
+    group: vagrant
+    mode: '0777'
+  become: yes
+
+- name: Install NFS client on web01
+  apt:
+    name: nfs-common
+    state: present
+  become: yes
+
+- name: Mount NFS share on web01
+  ansible.posix.mount:
+    path: "{{mountpoint }}"
+    src: "{{mynfs }}"
+    fstype: nfs
+    opts: "{{myopts }}"
+    state: mounted
+  become: yes

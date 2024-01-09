@@ -1,0 +1,6 @@
+---
+nfs_exports_file: /etc/exports
+mynfs: "192.168.3.3:/files"
+mountpoint: "/home/vagrant/Общедоступные"
+permission: '0777'
+myopts: 'rw,sync'
